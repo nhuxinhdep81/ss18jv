@@ -1,6 +1,7 @@
 package ex10;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -107,36 +108,36 @@ public class Main {
     }
 
     public static void findHeighestSalary() {
-        if(employ.isEmpty()){
+        if (employ.isEmpty()){
             System.out.println("Danh sach nhan vien trong");
-        }else {
-            //.stream() giúp chuyển danh sách values() của Map thành luồng dữ liệu.
-            //
-            //.findFirst() lấy phần tử đầu tiên trong danh sách.
-            //
-            //.get() lấy giá trị thực tế.
-            Employee highestSalary = employ.values().stream().findFirst().get();
-
-            for(Employee emp : employ.values()){
-                if(emp.getSalary() > highestSalary.getSalary()){
+        } else {
+            Iterator<Employee> iterator = employ.values().iterator();
+            Employee highestSalary = iterator.next();
+            while (iterator.hasNext()){
+                Employee emp = iterator.next();
+                if (emp.getSalary() > highestSalary.getSalary()){
                     highestSalary = emp;
                 }
             }
-            System.out.println("NV co luong cao nhat la: "+highestSalary);
+            System.out.println("NV co luong cao nhat la: " + highestSalary);
         }
     }
-    public static void findLowesttSalary() {
-        if(employ.isEmpty()){
-            System.out.println("Danh sach nhan vien trong");
-        }else {
-            Employee lowestSalary = employ.values().stream().findFirst().get();
 
-            for(Employee emp : employ.values()){
-                if(emp.getSalary() < lowestSalary.getSalary()){
+    public static void findLowesttSalary() {
+        if (employ.isEmpty()){
+            System.out.println("Danh sach nhan vien trong");
+        } else {
+            Iterator<Employee> iterator = employ.values().iterator();
+            Employee lowestSalary = iterator.next();
+
+            while (iterator.hasNext()){
+                Employee emp = iterator.next();
+                if (emp.getSalary() < lowestSalary.getSalary()){
                     lowestSalary = emp;
                 }
             }
-            System.out.println("NV co luong thap nhat la: "+lowestSalary);
+            System.out.println("NV co luong thap nhat la: " + lowestSalary);
         }
     }
+
 }
