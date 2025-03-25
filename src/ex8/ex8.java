@@ -1,41 +1,46 @@
 package ex8;
-
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class ex8 {
     public static void main(String[] args) {
-        Map<Integer, String> map = new TreeMap<>();
-        map.put(1, "I");
-        map.put(2, "II");
-        map.put(3, "III");
-        map.put(4, "IV");
-        map.put(5, "V");
-        map.put(6, "VI");
-        map.put(7, "VII");
-        map.put(8, "VIII");
-        map.put(9, "IX");
-        map.put(10, "X");
-        map.put(11, "XI");
-        map.put(12, "XII");
-        map.put(13, "XIII");
-        map.put(14, "XIV");
-        map.put(15, "XV");
-        map.put(16, "XVI");
-        map.put(17, "XVII");
-        map.put(18, "XVIII");
-        map.put(19, "XIX");
-        map.put(20, "XX");
+        Scanner scanner = new Scanner(System.in);
+        int number;
+        do{
+            System.out.println("Nhap vao so nguyen duong");
+            number = Integer.parseInt(scanner.nextLine());
+            if(number < 1 || number > 3999){
+                System.out.println("So khong hop le, nhap lai cho toiiiiiiii");
+            }else {
+                break;
+            }
+        }while(true);
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap vao 1 so tu 1 den 20:");
-        int number = Integer.parseInt(sc.nextLine());
+        Map<Integer, String> romanMap = new LinkedHashMap<>();
+        romanMap.put(1000, "M");
+        romanMap.put(900, "CM");
+        romanMap.put(500, "D");
+        romanMap.put(400, "CD");
+        romanMap.put(100, "C");
+        romanMap.put(90, "XC");
+        romanMap.put(50, "L");
+        romanMap.put(40, "XL");
+        romanMap.put(10, "X");
+        romanMap.put(9, "IX");
+        romanMap.put(5, "V");
+        romanMap.put(4, "IV");
+        romanMap.put(1, "I");
 
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            if(number == entry.getKey()) {
-                System.out.printf("Ky hieu la ma tuong ung voi %d la %s", number, entry.getValue());
+        StringBuilder romanNumber = new StringBuilder();
+        for (Map.Entry<Integer, String> entry : romanMap.entrySet()) {
+            int value = entry.getKey();
+            while (number >= value) {
+                romanNumber.append(entry.getValue());
+                number -= value;
             }
         }
+
+        System.out.println("Chu so La Ma: " + romanNumber);
     }
 }
